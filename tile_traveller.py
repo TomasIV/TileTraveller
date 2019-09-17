@@ -2,19 +2,19 @@
 x = 11
 # Skilgreina possible moves
 def north(x):
-    if x % 10 == 3 or x == 22 or x == 31:
+    if (x % 10 == 3) or (x == 22) or (x == 31):
         return False
     return True
 def east(x):
-    if x  == 12 or x == 13 or x == 23:
+    if x == 12 or (x == 13) or (x == 23):
         return True
     return False
 def south(x):
-    if x % 10 == 1 or x == 23:
+    if (x % 10 == 1) or (x == 23):
         return False
     return True
 def west(x):
-    if x  == 22 or x == 23 or x == 33:
+    if x == 22 or (x == 23) or (x == 33):
         return True
     return False
 # Possible travel options prentast eftir hvert move
@@ -52,11 +52,21 @@ def move(x, string):
             x -= 10
 # Við invalid direction prentast "Not a valid direction!" og possible travel options
 def user_input():
-    UI = input("Direction: ")
+    UI = (input("Direction: "))
     UI = UI.upper()
     return UI
 
 # Main program
 #print("You can travel: " direction ".")
 # Victory location [3,1]
-#BLABLA
+while x != 31:
+    a = x
+    directions = possible_travel(x)
+    print ("You can travel: " + directions + ".")
+
+    while x == a:
+        movement = user_input()
+        x = move(x, movement)
+        if x == a:
+            print ("Not a valid direction!")
+print ("Victory!")
