@@ -18,38 +18,39 @@ def west(x):
         return True
     return False
 # Possible travel options prentast eftir hvert move
-def possible_travel(x):
+def possible_travel(n, e, s, w):
     direction = ""
     while direction == "":
-        if north(x):
+        if n:
             direction += "(N)orth"
-        elif east(x):
+        elif e:
             direction += "(E)ast"
-        elif south(x):
+        elif s:
             direction += "(S)outh"
-        elif west(x):
+        elif w:
             direction += "(W)est"
-    if east(x) and direction != "(E)ast":
+    if e and direction != "(E)ast":
         direction += " or (E)ast"
-    if south(x) and direction != "(S)outh":
+    if s and direction != "(S)outh":
         direction += " or (S)outh"
-    if west(x) and direction != "(W)est":
+    if w and direction != "(W)est":
         direction += " or (W)est"
     return direction
 # Move player og input(move path)
-def move(x, string):
+def move(x, string, n, e, s, w):
     if string == "N":
-        if north(x):
+        if n:
             x += 1
     if string == "E":
-        if east(x):
+        if e:
             x += 10
     if string == "S":
-        if south(x):
+        if s:
             x -= 1
     if string == "W":
-        if west(x):
+        if w:
             x -= 10
+    return x
 # Við invalid direction prentast "Not a valid direction!" og possible travel options
 def user_input():
     UI = (input("Direction: "))
@@ -61,12 +62,16 @@ def user_input():
 # Victory location [3,1]
 while x != 31:
     a = x
-    directions = possible_travel(x)
+    n = north(x)
+    e = east(x)
+    s = south(x)
+    w = west(x)
+    directions = possible_travel(n, e, s, w)
     print ("You can travel: " + directions + ".")
-
+    movement = ""
     while x == a:
         movement = user_input()
-        x = move(x, movement)
+        x = move(x, movement, n, e, s, w)
         if x == a:
             print ("Not a valid direction!")
 print ("Victory!")
