@@ -1,6 +1,10 @@
+# https://github.com/TomasIV/TileTraveller/blob/master/tile_traveller.py
+
 # Starting point er [1,1]
 x = 11
-# Skilgreina possible moves
+
+
+# Skilgreina hvaða átt má færast í
 def north(x):
     if (x % 10 == 3) or (x == 22) or (x == 31):
         return False
@@ -17,6 +21,9 @@ def west(x):
     if x == 22 or (x == 23) or (x == 33):
         return True
     return False
+
+
+
 # Possible travel options prentast eftir hvert move
 def possible_travel(n, e, s, w):
     direction = ""
@@ -36,7 +43,10 @@ def possible_travel(n, e, s, w):
     if w and direction != "(W)est":
         direction += " or (W)est"
     return direction
-# Move player og input(move path)
+
+
+
+# Hreyfir staðsetningu spilarans
 def move(x, string, n, e, s, w):
     if string == "N":
         if n:
@@ -51,15 +61,16 @@ def move(x, string, n, e, s, w):
         if w:
             x -= 10
     return x
-# Við invalid direction prentast "Not a valid direction!" og possible travel options
+
+
+
 def user_input():
     UI = (input("Direction: "))
     UI = UI.upper()
     return UI
 
-# Main program
-#print("You can travel: " direction ".")
-# Victory location [3,1]
+
+#Main program
 while x != 31:
     a = x
     n = north(x)
