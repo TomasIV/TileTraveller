@@ -79,7 +79,6 @@ while x != 31:
     w = west(x)
     directions = possible_travel(n, e, s, w)
     print ("You can travel: " + directions + ".")
-    movement = ""
     while x == a:
         movement = user_input()
         x = move(x, movement, n, e, s, w)
